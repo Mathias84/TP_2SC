@@ -1,0 +1,30 @@
+<?php
+
+namespace MDBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+  * @ORM\Entity
+  * @ORM\Table(name="artiste")
+  */
+class Artiste
+{
+  /**
+    * @ORM\Column(type="integer")
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+  private $id;
+  
+  /**
+    * @ORM\Column(type="string", length=50)
+    */
+  private $nom;
+  
+  /**
+    * @ORM\ManyToMany(targetEntity="Album", inversedBy="artistes")
+    * @ORM\JoinTable(name="artistes_albums")
+    */
+  private $albums;
+}
