@@ -1,0 +1,3 @@
+# musique_homepage:
+    # path:     /
+    # defaults: { _controller: MusiqueBundle:Default:index }
