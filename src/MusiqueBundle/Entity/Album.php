@@ -21,13 +21,13 @@ class Album
   private $nom;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Artiste", mappedBy="albums")
+    * @ORM\ManyToOne(targetEntity="Artiste", inversedBy="albums")
+    * @ORM\JoinColumn(name="artiste_id", referencedColumnName="id")
     */
-  private $artistes;
+  private $artiste;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Titre", inversedBy="albums")
-    * @ORM\JoinTable(name="albums_titres")
+    * @ORM\OneToMany(targetEntity="Titre", mappedBy="album")
     */
   private $titres;
     /**
@@ -35,7 +35,6 @@ class Album
      */
     public function __construct()
     {
-        $this->artistes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->titres = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -73,36 +72,26 @@ class Album
     }
 
     /**
-     * Add artistes
+     * Set artiste
      *
-     * @param \MusiqueBundle\Entity\Artiste $artistes
+     * @param \MusiqueBundle\Entity\Artiste $artiste
      * @return Album
      */
-    public function addArtiste(\MusiqueBundle\Entity\Artiste $artistes)
+    public function setArtiste(\MusiqueBundle\Entity\Artiste $artiste = null)
     {
-        $this->artistes[] = $artistes;
+        $this->artiste = $artiste;
 
         return $this;
     }
 
     /**
-     * Remove artistes
+     * Get artiste
      *
-     * @param \MusiqueBundle\Entity\Artiste $artistes
+     * @return \MusiqueBundle\Entity\Artiste 
      */
-    public function removeArtiste(\MusiqueBundle\Entity\Artiste $artistes)
+    public function getArtiste()
     {
-        $this->artistes->removeElement($artistes);
-    }
-
-    /**
-     * Get artistes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getArtistes()
-    {
-        return $this->artistes;
+        return $this->artiste;
     }
 
     /**

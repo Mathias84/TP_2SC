@@ -21,13 +21,109 @@ class Album
   private $nom;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Artiste", mappedBy="albums")
+    * @ORM\ManyToOne(targetEntity="Artiste", inversedBy="albums")
+    * @ORM\JoinColumn(name="artiste_id", referencedColumnName="id")
     */
-  private $artistes;
+  private $artiste;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Titre", inversedBy="albums")
-    * @ORM\JoinTable(name="albums_titres")
+    * @ORM\OneToMany(targetEntity="Titre", mappedBy="album")
     */
   private $titres;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->titres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Album
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set artiste
+     *
+     * @param \MusiqueBundle\Entity\Artiste $artiste
+     * @return Album
+     */
+    public function setArtiste(\MusiqueBundle\Entity\Artiste $artiste = null)
+    {
+        $this->artiste = $artiste;
+
+        return $this;
+    }
+
+    /**
+     * Get artiste
+     *
+     * @return \MusiqueBundle\Entity\Artiste 
+     */
+    public function getArtiste()
+    {
+        return $this->artiste;
+    }
+
+    /**
+     * Add titres
+     *
+     * @param \MusiqueBundle\Entity\Titre $titres
+     * @return Album
+     */
+    public function addTitre(\MusiqueBundle\Entity\Titre $titres)
+    {
+        $this->titres[] = $titres;
+
+        return $this;
+    }
+
+    /**
+     * Remove titres
+     *
+     * @param \MusiqueBundle\Entity\Titre $titres
+     */
+    public function removeTitre(\MusiqueBundle\Entity\Titre $titres)
+    {
+        $this->titres->removeElement($titres);
+    }
+
+    /**
+     * Get titres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTitres()
+    {
+        return $this->titres;
+    }
 }

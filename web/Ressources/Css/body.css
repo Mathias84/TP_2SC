@@ -2,3 +2,55 @@
 {
   padding: 20px;
 }
+
+/****************** app/Ressources/views/base.html.twig ******************/
+.messages
+{
+  padding: 10px;
+  border-style: outset;
+  margin-bottom: 10px;
+}
+
+.flash-notice, .flash-error
+{
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.flash-notice
+{
+  color: green;
+}
+
+.flash-error
+{
+  color: red;
+}
+
+/*********** src/MusiqueBundle/Ressources/views/Default/index.html.twig ***********/
+#admin_index .row
+{
+  margin-bottom: 20px;
+}
+
+#admin_index .bouton_ajouter
+{
+  margin-bottom: 20px;
+}
+
+#admin_index .float_right
+{
+  float: right;
+}
+
+#admin_index .url
+{
+  margin-top: 10px;
+}
+
+#admin_index .info
+{
+  color: green;
+  font-weight: bold;
+}

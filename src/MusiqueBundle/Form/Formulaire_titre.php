@@ -2,7 +2,7 @@
 
 namespace MusiqueBundle\Form;
 
-class Formulaire
+class Formulaire_titre
 {
   protected $artiste;
   protected $album;

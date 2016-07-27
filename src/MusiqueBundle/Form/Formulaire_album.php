@@ -2,11 +2,10 @@
 
 namespace MusiqueBundle\Form;
 
-class Formulaire
+class Formulaire_album
 {
   protected $artiste;
-  protected $album;
-  protected $titre;
+  protected $nom;
   
   public function getArtiste()
   {
@@ -18,23 +17,13 @@ class Formulaire
     $this->artiste = $unArtiste;
   }
   
-  public function getAlbum()
+  public function getNom()
   {
-    return $this->album;
+    return $this->nom;
   }
   
-  public function setAlbum($unAlbum)
+  public function setNom($unNom)
   {
-    $this->album = $unAlbum;
-  }
-  
-  public function getTitre()
-  {
-    return $this->titre;
-  }
-  
-  public function setTitre($unTitre)
-  {
-    $this->titre = $unTitre;
+    $this->nom = $unNom;
   }
 }

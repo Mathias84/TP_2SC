@@ -21,8 +21,7 @@ class Artiste
   private $nom;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Album", inversedBy="artistes")
-    * @ORM\JoinTable(name="artistes_albums")
+    * @ORM\OneToMany(targetEntity="Album", mappedBy="artiste")
     */
   private $albums;
     /**

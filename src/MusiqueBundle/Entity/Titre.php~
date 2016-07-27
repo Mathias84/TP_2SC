@@ -21,7 +21,8 @@ class Titre
   private $nom;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Album", mappedBy="titres")
+    * @ORM\ManyToOne(targetEntity="Album", inversedBy="titres")
+    * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
     */
-  private $albums;
+  private $album;
 }

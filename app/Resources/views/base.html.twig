@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+      <title>{% block title %}2S Computing{% endblock %}</title>
+      <link rel="icon" type="image/x-icon" href="{{ asset('Ressources/Img/logo_2SC.ico') }}" />
+      
+      {% block stylesheets %}
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ asset('Ressources/bootstrap-3.3.6-dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('Ressources/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css') }}">
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('Ressources/Css/2SC.css') }}" />
+      {% endblock %}
+  </head>
+  <body>
+    <div class="container">
+      <header><img src="{{ asset('Ressources/Img/logo_2SC.png') }}" alt="2S-Computing"></header>
+      
+      <hr>
+      
+      {% if app.session.flashbag.has('notice') %}
+        <div class="messages">
+          {% for flash_message in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">{{ flash_message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      {% if app.session.flashbag.has('error') %}
+        <div class="messages">
+          {% for flash_message in app.session.flashbag.get('error') %}
+            <div class="flash-error">{{ flash_message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      {% block body %}{% endblock %}
+    </div>
+    
+    
+    {% block javascripts %}
+      <script src="{{ asset('Ressources/Js/jquery-2.2.3.min.js') }}"></script>
+      <script src="{{ asset('Ressources/bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>
+      <script src="{{ asset('Ressources/Js/2SC.js') }}"></script>
+    {% endblock %}
+  </body>
 </html>

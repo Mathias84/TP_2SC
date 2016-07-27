@@ -21,16 +21,10 @@ class Titre
   private $nom;
   
   /**
-    * @ORM\ManyToMany(targetEntity="Album", mappedBy="titres")
+    * @ORM\ManyToOne(targetEntity="Album", inversedBy="titres")
+    * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
     */
-  private $albums;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->albums = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+  private $album;
 
     /**
      * Get id
@@ -66,35 +60,25 @@ class Titre
     }
 
     /**
-     * Add albums
+     * Set album
      *
-     * @param \MusiqueBundle\Entity\Album $albums
+     * @param \MusiqueBundle\Entity\Album $album
      * @return Titre
      */
-    public function addAlbum(\MusiqueBundle\Entity\Album $albums)
+    public function setAlbum(\MusiqueBundle\Entity\Album $album = null)
     {
-        $this->albums[] = $albums;
+        $this->album = $album;
 
         return $this;
     }
 
     /**
-     * Remove albums
+     * Get album
      *
-     * @param \MusiqueBundle\Entity\Album $albums
+     * @return \MusiqueBundle\Entity\Album 
      */
-    public function removeAlbum(\MusiqueBundle\Entity\Album $albums)
+    public function getAlbum()
     {
-        $this->albums->removeElement($albums);
-    }
-
-    /**
-     * Get albums
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAlbums()
-    {
-        return $this->albums;
+        return $this->album;
     }
 }

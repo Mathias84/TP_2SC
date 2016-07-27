@@ -1,3 +1,7 @@
-app:
-    resource: "@AppBundle/Controller/"
+musique:
+    resource: "@MusiqueBundle/Controller/"
     type:     annotation
+    
+# musique:
+    # resource: "@MusiqueBundle/Resources/config/routing.yml"
+    # prefix:   /
